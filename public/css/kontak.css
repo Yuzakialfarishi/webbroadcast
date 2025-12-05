@@ -1,0 +1,44 @@
+/* KONTAK PAGE */
+.contact-header {
+    text-align: center;
+    padding: 60px 10px;
+    background: #004b8d;
+    color: #fff;
+}
+
+.contact-container {
+    max-width: 900px;
+    margin: 40px auto;
+    padding: 20px;
+}
+
+.contact-form {
+    background: #fff;
+    padding: 25px;
+    border-radius: 12px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+}
+
+.contact-form input,
+.contact-form textarea {
+    width: 100%;
+    padding: 12px;
+    border: 1px solid #ccc;
+    margin-top: 10px;
+    border-radius: 8px;
+}
+
+.contact-form button {
+    margin-top: 15px;
+    background: #004b8d;
+    color: #fff;
+    padding: 12px 20px;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.contact-form button:hover {
+    background: #00345f;
+}
