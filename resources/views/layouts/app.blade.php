@@ -12,13 +12,28 @@
     @yield('styles')
 
     <!-- Vite-built app assets (Tailwind / app JS) -->
-    @if (file_exists(public_path('build'))) 
-        {{-- production build --}}
-        <link rel="stylesheet" href="{{ asset('build/assets/app.css') }}">
-        <script type="module" src="{{ asset('build/assets/app.js') }}"></script>
+    @php
+        $manifest = public_path('build/manifest.json');
+    @endphp
+
+    @if (file_exists($manifest))
+        {{-- production build (use manifest) --}}
+        @php
+            $manifestData = json_decode(file_get_contents($manifest), true) ?: [];
+            $appCss = $manifestData['resources/css/app.css']['file'] ?? ($manifestData['resources/js/app.js']['css'][0] ?? null);
+            $appJs  = $manifestData['resources/js/app.js']['file'] ?? null;
+        @endphp
+
+        @if($appCss)
+            <link rel="stylesheet" href="{{ asset('build/'.$appCss) }}">
+        @endif
+
+        @if($appJs)
+            <script type="module" src="{{ asset('build/'.$appJs) }}"></script>
+        @endif
     @else
-        {{-- dev / Vite server --}}
-        @vite(['resources/css/app.css', 'resources/js/app.js'])
+        {{-- No manifest found: do not call @vite to avoid exceptions. --}}
+        {{-- Dev server or build not available. Rely on `public/css/*` files already included. --}}
     @endif
 </head>
 
