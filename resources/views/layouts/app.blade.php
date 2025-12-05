@@ -6,7 +6,7 @@
     <title>Broadcast SMKN 1 Garut</title>
 
     <!-- Global CSS (wajib) -->
-    <link rel="stylesheet" href="{{ asset('css/global.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/app.bundle.css') }}">
 
     <!-- CSS khusus halaman -->
     @yield('styles')
