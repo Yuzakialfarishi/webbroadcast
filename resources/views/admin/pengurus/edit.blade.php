@@ -2,12 +2,13 @@
 
 @section('content')
     <h2 style="font-size: 24px; color: #333; margin-bottom: 30px;">
-        <i class="fas fa-user-plus"></i> Tambah Pengurus Baru
+        <i class="fas fa-edit"></i> Edit Pengurus
     </h2>
 
     <div class="content-card">
-        <form method="POST" action="{{ route('admin.pengurus.store') }}" enctype="multipart/form-data">
+        <form method="POST" action="{{ route('admin.pengurus.update', $penguru) }}" enctype="multipart/form-data">
             @csrf
+            @method('PUT')
 
             @if($errors->any())
                 <div style="background: #ffebee; border-left: 4px solid #f44336; padding: 15px; border-radius: 8px; margin-bottom: 20px; color: #c62828;">
@@ -26,7 +27,7 @@
                 </label>
                 <input type="text" id="nama" name="nama" required 
                        style="width: 100%; padding: 12px 15px; border: 1px solid #e0e0e0; border-radius: 8px; font-size: 14px; transition: border-color 0.3s;"
-                       value="{{ old('nama') }}"
+                       value="{{ $penguru->nama }}"
                        onblur="this.style.borderColor='#e0e0e0'" onfocus="this.style.borderColor='#667eea'">
                 @error('nama')<span style="color: #f44336; font-size: 13px; margin-top: 5px; display: block;"><i class="fas fa-times-circle"></i> {{ $message }}</span>@enderror
             </div>
@@ -37,7 +38,7 @@
                 </label>
                 <input type="text" id="jabatan" name="jabatan" 
                        style="width: 100%; padding: 12px 15px; border: 1px solid #e0e0e0; border-radius: 8px; font-size: 14px; transition: border-color 0.3s;"
-                       value="{{ old('jabatan') }}"
+                       value="{{ $penguru->jabatan }}"
                        onblur="this.style.borderColor='#e0e0e0'" onfocus="this.style.borderColor='#667eea'">
                 @error('jabatan')<span style="color: #f44336; font-size: 13px; margin-top: 5px; display: block;"><i class="fas fa-times-circle"></i> {{ $message }}</span>@enderror
             </div>
@@ -48,7 +49,7 @@
                 </label>
                 <input type="text" id="kontak" name="kontak" 
                        style="width: 100%; padding: 12px 15px; border: 1px solid #e0e0e0; border-radius: 8px; font-size: 14px; transition: border-color 0.3s;"
-                       value="{{ old('kontak') }}"
+                       value="{{ $penguru->kontak }}"
                        placeholder="Nomor telepon atau email"
                        onblur="this.style.borderColor='#e0e0e0'" onfocus="this.style.borderColor='#667eea'">
                 @error('kontak')<span style="color: #f44336; font-size: 13px; margin-top: 5px; display: block;"><i class="fas fa-times-circle"></i> {{ $message }}</span>@enderror
@@ -58,6 +59,18 @@
                 <label for="foto" style="display: block; font-weight: 600; color: #333; margin-bottom: 8px;">
                     <i class="fas fa-image"></i> Foto
                 </label>
+                
+                @if($penguru->foto)
+                    <div style="margin-bottom: 20px;">
+                        <div style="display: inline-block; border-radius: 10px; overflow: hidden; border: 2px solid #e0e0e0;">
+                            <img src="{{ asset('storage/' . $penguru->foto) }}" alt="{{ $penguru->nama }}" style="max-height: 200px; display: block;">
+                        </div>
+                        <p style="color: #999; font-size: 13px; margin-top: 10px;">
+                            <i class="fas fa-check-circle"></i> Foto saat ini
+                        </p>
+                    </div>
+                @endif
+
                 <div style="position: relative;">
                     <input type="file" id="foto" name="foto" accept="image/*" 
                            style="position: absolute; opacity: 0; width: 100%; height: 100%; cursor: pointer;">
@@ -65,7 +78,7 @@
                            onmouseover="this.style.borderColor='#667eea'; this.style.background='#f5f5ff';"
                            onmouseout="this.style.borderColor='#e0e0e0'; this.style.background='#f9f9f9';">
                         <i class="fas fa-cloud-upload-alt" style="font-size: 28px; color: #667eea; margin-bottom: 10px; display: block;"></i>
-                        <span style="color: #667eea; font-weight: 600;">Klik untuk upload atau drag & drop</span>
+                        <span style="color: #667eea; font-weight: 600;">Klik untuk ubah foto atau drag & drop</span>
                         <p style="color: #999; font-size: 13px; margin: 8px 0 0;">Format: JPG, PNG. Maksimal 5MB</p>
                     </label>
                 </div>
@@ -74,7 +87,7 @@
 
             <div style="display: flex; gap: 12px; padding-top: 20px; border-top: 1px solid #e0e0e0;">
                 <button type="submit" class="btn btn-primary">
-                    <i class="fas fa-save"></i> Simpan Pengurus
+                    <i class="fas fa-save"></i> Simpan Perubahan
                 </button>
                 <a href="{{ route('admin.pengurus.index') }}" class="btn btn-secondary">
                     <i class="fas fa-arrow-left"></i> Kembali

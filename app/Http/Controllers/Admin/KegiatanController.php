@@ -24,7 +24,7 @@ class KegiatanController extends Controller
         $data = $request->validate([
             'judul'=>'required|string|max:255',
             'deskripsi'=>'nullable|string',
-            'jenis'=>'required|in:harian,event',
+            'jenis'=>'required|in:Dokumentasi Harian,Event Sekolah,Kumpulan Rutin',
             'tanggal'=>'nullable|date',
             'foto'=>'nullable|image|max:4096',
         ]);
@@ -36,4 +36,43 @@ class KegiatanController extends Controller
         Kegiatan::create($data);
         return redirect()->route('admin.kegiatans.index')->with('status','Kegiatan ditambahkan');
     }
+
+    public function edit(Kegiatan $kegiatan)
+    {
+        return view('admin.kegiatans.edit', compact('kegiatan'));
+    }
+
+    public function update(Request $request, Kegiatan $kegiatan)
+    {
+        $data = $request->validate([
+            'judul'=>'required|string|max:255',
+            'deskripsi'=>'nullable|string',
+            'jenis'=>'required|in:Dokumentasi Harian,Event Sekolah,Kumpulan Rutin',
+            'tanggal'=>'nullable|date',
+            'foto'=>'nullable|image|max:4096',
+        ]);
+
+        if ($request->hasFile('foto')) {
+            // Delete old photo if exists
+            if ($kegiatan->foto) {
+                \Storage::disk('public')->delete($kegiatan->foto);
+            }
+            $data['foto'] = $request->file('foto')->store('uploads','public');
+        }
+
+        $kegiatan->update($data);
+        return redirect()->route('admin.kegiatans.index')->with('status','Kegiatan diperbarui');
+    }
+
+    public function destroy(Kegiatan $kegiatan)
+    {
+        // Delete photo if exists
+        if ($kegiatan->foto) {
+            \Storage::disk('public')->delete($kegiatan->foto);
+        }
+        
+        $kegiatan->delete();
+        return redirect()->route('admin.kegiatans.index')->with('status','Kegiatan dihapus');
+    }
 }
+

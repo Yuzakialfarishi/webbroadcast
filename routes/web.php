@@ -51,12 +51,6 @@ Route::prefix('admin')->middleware(['auth', IsAdmin::class])->group(function () 
     Route::get('/', [App\Http\Controllers\Admin\DashboardController::class, 'index'])
         ->name('admin.dashboard');
 
-    // Profile
-    Route::get('/profile', [App\Http\Controllers\Admin\ProfileController::class, 'edit'])
-        ->name('admin.profile.edit');
-    Route::post('/profile', [App\Http\Controllers\Admin\ProfileController::class, 'update'])
-        ->name('admin.profile.update');
-
     // Kegiatan CRUD
     Route::get('/kegiatans', [App\Http\Controllers\Admin\KegiatanController::class, 'index'])
         ->name('admin.kegiatans.index');
@@ -64,6 +58,12 @@ Route::prefix('admin')->middleware(['auth', IsAdmin::class])->group(function () 
         ->name('admin.kegiatans.create');
     Route::post('/kegiatans', [App\Http\Controllers\Admin\KegiatanController::class, 'store'])
         ->name('admin.kegiatans.store');
+    Route::get('/kegiatans/{kegiatan}/edit', [App\Http\Controllers\Admin\KegiatanController::class, 'edit'])
+        ->name('admin.kegiatans.edit');
+    Route::put('/kegiatans/{kegiatan}', [App\Http\Controllers\Admin\KegiatanController::class, 'update'])
+        ->name('admin.kegiatans.update');
+    Route::delete('/kegiatans/{kegiatan}', [App\Http\Controllers\Admin\KegiatanController::class, 'destroy'])
+        ->name('admin.kegiatans.destroy');
 
     // Pengurus CRUD
     Route::get('/pengurus', [App\Http\Controllers\Admin\PengurusController::class, 'index'])
@@ -72,6 +72,12 @@ Route::prefix('admin')->middleware(['auth', IsAdmin::class])->group(function () 
         ->name('admin.pengurus.create');
     Route::post('/pengurus', [App\Http\Controllers\Admin\PengurusController::class, 'store'])
         ->name('admin.pengurus.store');
+    Route::get('/pengurus/{penguru}/edit', [App\Http\Controllers\Admin\PengurusController::class, 'edit'])
+        ->name('admin.pengurus.edit');
+    Route::put('/pengurus/{penguru}', [App\Http\Controllers\Admin\PengurusController::class, 'update'])
+        ->name('admin.pengurus.update');
+    Route::delete('/pengurus/{penguru}', [App\Http\Controllers\Admin\PengurusController::class, 'destroy'])
+        ->name('admin.pengurus.destroy');
 
     // Highlights CRUD
     Route::get('/highlights', [App\Http\Controllers\Admin\HighlightController::class, 'index'])

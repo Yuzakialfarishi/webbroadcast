@@ -2,12 +2,13 @@
 
 @section('content')
     <h2 style="font-size: 24px; color: #333; margin-bottom: 30px;">
-        <i class="fas fa-calendar-plus"></i> Tambah Kegiatan Baru
+        <i class="fas fa-edit"></i> Edit Kegiatan
     </h2>
 
     <div class="content-card">
-        <form method="POST" action="{{ route('admin.kegiatans.store') }}" enctype="multipart/form-data">
+        <form method="POST" action="{{ route('admin.kegiatans.update', $kegiatan) }}" enctype="multipart/form-data">
             @csrf
+            @method('PUT')
 
             @if($errors->any())
                 <div style="background: #ffebee; border-left: 4px solid #f44336; padding: 15px; border-radius: 8px; margin-bottom: 20px; color: #c62828;">
@@ -26,7 +27,7 @@
                 </label>
                 <input type="text" id="judul" name="judul" required 
                        style="width: 100%; padding: 12px 15px; border: 1px solid #e0e0e0; border-radius: 8px; font-size: 14px; transition: border-color 0.3s;"
-                       value="{{ old('judul') }}"
+                       value="{{ $kegiatan->judul }}"
                        onblur="this.style.borderColor='#e0e0e0'" onfocus="this.style.borderColor='#667eea'">
                 @error('judul')<span style="color: #f44336; font-size: 13px; margin-top: 5px; display: block;"><i class="fas fa-times-circle"></i> {{ $message }}</span>@enderror
             </div>
@@ -37,7 +38,7 @@
                 </label>
                 <textarea id="deskripsi" name="deskripsi" 
                           style="width: 100%; padding: 12px 15px; border: 1px solid #e0e0e0; border-radius: 8px; font-size: 14px; min-height: 120px; font-family: Arial, sans-serif; transition: border-color 0.3s; resize: vertical;"
-                          onblur="this.style.borderColor='#e0e0e0'" onfocus="this.style.borderColor='#667eea'">{{ old('deskripsi') }}</textarea>
+                          onblur="this.style.borderColor='#e0e0e0'" onfocus="this.style.borderColor='#667eea'">{{ $kegiatan->deskripsi }}</textarea>
                 @error('deskripsi')<span style="color: #f44336; font-size: 13px; margin-top: 5px; display: block;"><i class="fas fa-times-circle"></i> {{ $message }}</span>@enderror
             </div>
 
@@ -50,9 +51,9 @@
                             style="width: 100%; padding: 12px 15px; border: 1px solid #e0e0e0; border-radius: 8px; font-size: 14px; transition: border-color 0.3s;"
                             onblur="this.style.borderColor='#e0e0e0'" onfocus="this.style.borderColor='#667eea'">
                         <option value="">Pilih Jenis</option>
-                        <option value="Dokumentasi Harian" {{ old('jenis') == 'Dokumentasi Harian' ? 'selected' : '' }}>Dokumentasi Harian</option>
-                        <option value="Event Sekolah" {{ old('jenis') == 'Event Sekolah' ? 'selected' : '' }}>Event Sekolah</option>
-                        <option value="Kumpulan Rutin" {{ old('jenis') == 'Kumpulan Rutin' ? 'selected' : '' }}>Kumpulan Rutin</option>
+                        <option value="Dokumentasi Harian" {{ $kegiatan->jenis == 'Dokumentasi Harian' ? 'selected' : '' }}>Dokumentasi Harian</option>
+                        <option value="Event Sekolah" {{ $kegiatan->jenis == 'Event Sekolah' ? 'selected' : '' }}>Event Sekolah</option>
+                        <option value="Kumpulan Rutin" {{ $kegiatan->jenis == 'Kumpulan Rutin' ? 'selected' : '' }}>Kumpulan Rutin</option>
                     </select>
                     @error('jenis')<span style="color: #f44336; font-size: 13px; margin-top: 5px; display: block;"><i class="fas fa-times-circle"></i> {{ $message }}</span>@enderror
                 </div>
@@ -63,7 +64,7 @@
                     </label>
                     <input type="date" id="tanggal" name="tanggal" 
                            style="width: 100%; padding: 12px 15px; border: 1px solid #e0e0e0; border-radius: 8px; font-size: 14px; transition: border-color 0.3s;"
-                           value="{{ old('tanggal') }}"
+                           value="{{ $kegiatan->tanggal }}"
                            onblur="this.style.borderColor='#e0e0e0'" onfocus="this.style.borderColor='#667eea'">
                     @error('tanggal')<span style="color: #f44336; font-size: 13px; margin-top: 5px; display: block;"><i class="fas fa-times-circle"></i> {{ $message }}</span>@enderror
                 </div>
@@ -73,6 +74,18 @@
                 <label for="foto" style="display: block; font-weight: 600; color: #333; margin-bottom: 8px;">
                     <i class="fas fa-image"></i> Foto
                 </label>
+                
+                @if($kegiatan->foto)
+                    <div style="margin-bottom: 20px;">
+                        <div style="display: inline-block; border-radius: 10px; overflow: hidden; border: 2px solid #e0e0e0;">
+                            <img src="{{ asset('storage/' . $kegiatan->foto) }}" alt="{{ $kegiatan->judul }}" style="max-height: 200px; display: block;">
+                        </div>
+                        <p style="color: #999; font-size: 13px; margin-top: 10px;">
+                            <i class="fas fa-check-circle"></i> Foto saat ini
+                        </p>
+                    </div>
+                @endif
+
                 <div style="position: relative;">
                     <input type="file" id="foto" name="foto" accept="image/*" 
                            style="position: absolute; opacity: 0; width: 100%; height: 100%; cursor: pointer;">
@@ -80,7 +93,7 @@
                            onmouseover="this.style.borderColor='#667eea'; this.style.background='#f5f5ff';"
                            onmouseout="this.style.borderColor='#e0e0e0'; this.style.background='#f9f9f9';">
                         <i class="fas fa-cloud-upload-alt" style="font-size: 28px; color: #667eea; margin-bottom: 10px; display: block;"></i>
-                        <span style="color: #667eea; font-weight: 600;">Klik untuk upload atau drag & drop</span>
+                        <span style="color: #667eea; font-weight: 600;">Klik untuk ubah foto atau drag & drop</span>
                         <p style="color: #999; font-size: 13px; margin: 8px 0 0;">Format: JPG, PNG. Maksimal 5MB</p>
                     </label>
                 </div>
@@ -89,7 +102,7 @@
 
             <div style="display: flex; gap: 12px; padding-top: 20px; border-top: 1px solid #e0e0e0;">
                 <button type="submit" class="btn btn-primary">
-                    <i class="fas fa-save"></i> Simpan Kegiatan
+                    <i class="fas fa-save"></i> Simpan Perubahan
                 </button>
                 <a href="{{ route('admin.kegiatans.index') }}" class="btn btn-secondary">
                     <i class="fas fa-arrow-left"></i> Kembali

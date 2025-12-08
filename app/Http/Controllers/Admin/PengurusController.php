@@ -24,6 +24,7 @@ class PengurusController extends Controller
         $data = $request->validate([
             'nama'=>'required|string|max:255',
             'jabatan'=>'nullable|string|max:255',
+            'kontak'=>'nullable|string|max:255',
             'foto'=>'nullable|image|max:4096',
         ]);
 
@@ -34,4 +35,42 @@ class PengurusController extends Controller
         Pengurus::create($data);
         return redirect()->route('admin.pengurus.index')->with('status','Pengurus ditambahkan');
     }
+
+    public function edit(Pengurus $penguru)
+    {
+        return view('admin.pengurus.edit', compact('penguru'));
+    }
+
+    public function update(Request $request, Pengurus $penguru)
+    {
+        $data = $request->validate([
+            'nama'=>'required|string|max:255',
+            'jabatan'=>'nullable|string|max:255',
+            'kontak'=>'nullable|string|max:255',
+            'foto'=>'nullable|image|max:4096',
+        ]);
+
+        if ($request->hasFile('foto')) {
+            // Delete old photo if exists
+            if ($penguru->foto) {
+                \Storage::disk('public')->delete($penguru->foto);
+            }
+            $data['foto'] = $request->file('foto')->store('uploads','public');
+        }
+
+        $penguru->update($data);
+        return redirect()->route('admin.pengurus.index')->with('status','Pengurus diperbarui');
+    }
+
+    public function destroy(Pengurus $penguru)
+    {
+        // Delete photo if exists
+        if ($penguru->foto) {
+            \Storage::disk('public')->delete($penguru->foto);
+        }
+        
+        $penguru->delete();
+        return redirect()->route('admin.pengurus.index')->with('status','Pengurus dihapus');
+    }
 }
+

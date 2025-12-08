@@ -9,11 +9,14 @@ class PageController extends Controller
 {
     public function home()
     {
-        $titles = ['Dokumentasi Harian', 'Event', 'Kumpulan Rutin'];
+        $titles = ['Dokumentasi Harian', 'Event Sekolah', 'Kumpulan Rutin'];
         $highlights = Highlight::whereIn('title', $titles)
-            ->orderByRaw("FIELD(title, 'Dokumentasi Harian', 'Event', 'Kumpulan Rutin')")
             ->take(3)
-            ->get();
+            ->get()
+            ->sortBy(function ($item) use ($titles) {
+                return array_search($item->title, $titles);
+            })
+            ->values();
         return view('pages.home', compact('highlights'));
     }
 
@@ -30,11 +33,14 @@ class PageController extends Controller
 
     public function kegiatan()
     {
-        $titles = ['Dokumentasi Harian', 'Event', 'Kumpulan Rutin'];
+        $titles = ['Dokumentasi Harian', 'Event Sekolah', 'Kumpulan Rutin'];
         $highlights = Highlight::whereIn('title', $titles)
-            ->orderByRaw("FIELD(title, 'Dokumentasi Harian', 'Event', 'Kumpulan Rutin')")
             ->take(3)
-            ->get();
+            ->get()
+            ->sortBy(function ($item) use ($titles) {
+                return array_search($item->title, $titles);
+            })
+            ->values();
 
         return view('pages.kegiatan', compact('highlights'));
     }
