@@ -1,0 +1,115 @@
+
+
+body {
+    font-family: Poppins, Arial, sans-serif;
+    margin: 0;
+    background: #fafbfc;
+    color: #222;
+}
+
+/* Home banner styles */
+.home-banner {
+    position: relative;
+    width: 100%;
+    height: 320px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+}
+
+.home-banner {
+    margin-bottom: 32px; /* space between banner and following content */
+}
+.home-banner-img {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    opacity: 0.95;
+    filter: saturate(0.95) contrast(1);
+}
+.home-banner-content {
+    position: relative;
+    z-index: 2;
+    text-align: center;
+    color: #fff;
+    padding: 0 20px;
+}
+.home-banner-content h1 {
+    font-size: 2.4rem;
+    margin: 0 0 8px 0;
+    text-shadow: 0 6px 18px rgba(0,0,0,0.45);
+}
+.home-banner-content p {
+    font-size: 1.05rem;
+    margin: 0 0 14px 0;
+    text-shadow: 0 4px 12px rgba(0,0,0,0.35);
+}
+.home-banner .btn {
+    background: #2c5aa0;
+    color: white;
+    padding: 10px 18px;
+    border-radius: 8px;
+    text-decoration: none;
+    box-shadow: 0 6px 18px rgba(44,90,160,0.3);
+}
+
+
+.simple-hero {
+    text-align: center;
+    padding: 80px 20px 40px 20px;
+    background: #fff;
+}
+.simple-hero h1 {
+    font-size: 2.5rem;
+    font-weight: 700;
+    margin-bottom: 12px;
+}
+.simple-hero p {
+    font-size: 1.1rem;
+    color: #555;
+}
+
+.main-menu-grid {
+    display: flex;
+    gap: 40px;
+    justify-content: center;
+    padding: 40px 20px 60px 20px;
+}
+.main-menu-card {
+    background: #fff;
+    border-radius: 18px;
+    box-shadow: 0 4px 16px rgba(0,0,0,0.08);
+    padding: 28px 22px;
+    width: 280px;
+    text-align: center;
+    text-decoration: none;
+    color: #222;
+    transition: box-shadow 0.2s, transform 0.2s;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+.main-menu-card:hover {
+    box-shadow: 0 8px 32px rgba(0,0,0,0.16);
+    transform: translateY(-4px);
+}
+.main-menu-card img {
+    width: 120px;
+    height: 120px;
+    object-fit: cover;
+    border-radius: 14px;
+    margin-bottom: 18px;
+    background: #eee;
+}
+.main-menu-card h2 {
+    font-size: 1.3rem;
+    font-weight: 700;
+    margin-bottom: 10px;
+}
+.main-menu-card p {
+    font-size: 1rem;
+    color: #555;
+}

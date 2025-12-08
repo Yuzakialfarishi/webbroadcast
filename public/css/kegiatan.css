@@ -1,0 +1,69 @@
+.kegiatan-hero {
+    position: relative;
+    width: 100%;
+    height: 340px;
+    background: url('/img/hero-kegiatan.jpg') center/cover no-repeat;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.kegiatan-hero-overlay {
+    width: 100%;
+    height: 100%;
+    background: rgba(0,0,0,0.45);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.kegiatan-hero-title h1 {
+    color: #fff;
+    font-size: 3rem;
+    font-weight: 700;
+    letter-spacing: 2px;
+}
+
+.kegiatan-main {
+    max-width: 1200px;
+    margin: 30px auto 0 auto; /* add top spacing from banner */
+    padding: 60px 20px;
+}
+.kegiatan-section {
+    margin-bottom: 60px;
+}
+.kegiatan-section h2 {
+    font-size: 2rem;
+    font-weight: 700;
+    margin-bottom: 30px;
+    text-align: center;
+}
+.kegiatan-row {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 40px;
+}
+.kegiatan-row.reverse {
+    flex-direction: row-reverse;
+}
+.kegiatan-text {
+    flex: 1 1 350px;
+    min-width: 300px;
+}
+.kegiatan-text p {
+    font-size: 1rem;
+    color: #555;
+    line-height: 1.8;
+    margin-bottom: 18px;
+}
+.kegiatan-img {
+    flex: 1 1 350px;
+    min-width: 300px;
+}
+.kegiatan-img img {
+    width: 100%;
+    height: 280px;
+    object-fit: cover;
+    border-radius: 16px;
+    box-shadow: 0 4px 16px rgba(0,0,0,0.08);
+    background: #eee;
+}
