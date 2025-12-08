@@ -7,33 +7,13 @@
         <form method="post" action="{{ route('admin.profile.update') }}" enctype="multipart/form-data">
             @csrf
             <div>
-                <label>Nama</label><br>
-                <input type="text" name="nama" value="{{ old('nama', $profile->nama ?? '') }}">
-            </div>
-            <div>
-                <label>Deskripsi</label><br>
-                <textarea name="deskripsi">{{ old('deskripsi', $profile->deskripsi ?? '') }}</textarea>
-            </div>
-            <div>
-                <label>Visi</label><br>
-                <textarea name="visi">{{ old('visi', $profile->visi ?? '') }}</textarea>
-            </div>
-            <div>
-                <label>Misi</label><br>
-                <textarea name="misi">{{ old('misi', $profile->misi ?? '') }}</textarea>
-            </div>
-            <div>
-                <label>Jadwal</label><br>
-                <input type="text" name="jadwal" value="{{ old('jadwal', $profile->jadwal ?? '') }}">
-            </div>
-            <div>
                 <label>Logo (gambar)</label><br>
-                <input type="file" name="logo">
+                <input type="file" name="logo" accept="image/*">
                 @if(!empty($profile->logo))
-                    <div><img src="{{ asset('storage/'.$profile->logo) }}" alt="logo" style="max-height:80px"></div>
+                    <div style="margin-top:8px"><img src="{{ asset('storage/'.$profile->logo) }}" alt="logo" style="max-height:160px"></div>
                 @endif
             </div>
-            <div style="margin-top:8px">
+            <div style="margin-top:12px">
                 <button type="submit">Simpan</button>
             </div>
         </form>

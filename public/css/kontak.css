@@ -1,44 +1,79 @@
-/* KONTAK PAGE */
-.contact-header {
-    text-align: center;
-    padding: 60px 10px;
-    background: #004b8d;
-    color: #fff;
-}
+/* Contact page styles matching provided UI */
 
-.contact-container {
-    max-width: 900px;
-    margin: 40px auto;
-    padding: 20px;
-}
-
-.contact-form {
-    background: #fff;
-    padding: 25px;
-    border-radius: 12px;
-    box-shadow: 0 4px 12px rgba(0,0,0,0.1);
-}
-
-.contact-form input,
-.contact-form textarea {
+.contact-hero {
+    position: relative;
     width: 100%;
-    padding: 12px;
-    border: 1px solid #ccc;
-    margin-top: 10px;
-    border-radius: 8px;
+    height: 260px;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
-
-.contact-form button {
-    margin-top: 15px;
-    background: #004b8d;
+.contact-hero-img {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    filter: grayscale(20%) contrast(0.9) brightness(0.6);
+}
+.contact-hero-overlay {
+    position: relative;
+    z-index: 2;
     color: #fff;
-    padding: 12px 20px;
-    border: none;
-    border-radius: 8px;
-    cursor: pointer;
-    transition: 0.3s;
+    text-align: center;
+    padding: 0 20px;
+}
+.contact-hero-overlay h1 {
+    font-size: 2.2rem;
+    margin: 0 0 8px 0;
+    letter-spacing: 1.5px;
+}
+.contact-hero-overlay p {
+    margin: 0;
+    opacity: 0.9;
 }
 
-.contact-form button:hover {
-    background: #00345f;
+.contact-cards {
+    max-width: 1100px;
+    margin: 30px auto 60px auto; /* avoid overlapping the hero */
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    gap: 24px;
+    padding: 0 20px;
+}
+.contact-card {
+    background: #fff;
+    border-radius: 10px;
+    padding: 24px;
+    text-align: center;
+    box-shadow: 0 8px 30px rgba(25, 40, 60, 0.08);
+}
+.contact-icon {
+    margin-bottom: 12px;
+}
+.contact-card h3 {
+    margin: 6px 0 8px 0;
+    font-size: 18px;
+    color: #1a3d52;
+}
+.contact-card p {
+    color: #555;
+    line-height: 1.5;
+}
+.contact-card a {
+    color: #E1306C;
+    text-decoration: none;
+}
+
+@media (max-width: 768px) {
+    .contact-hero { height: 200px; }
+    .contact-hero-overlay h1 { font-size: 1.6rem; }
+    .contact-cards { margin-top: -30px; }
+}
+
+@media (max-width: 480px) {
+    .contact-hero { height: 160px; }
+    .contact-hero-overlay h1 { font-size: 1.3rem; }
+    .contact-cards { gap: 14px; }
 }

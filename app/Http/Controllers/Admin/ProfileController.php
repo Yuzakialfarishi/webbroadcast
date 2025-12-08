@@ -17,12 +17,8 @@ class ProfileController extends Controller
 
     public function update(Request $request)
     {
-        $data = $request->validate([
-            'nama' => 'nullable|string|max:255',
-            'deskripsi' => 'nullable|string',
-            'visi' => 'nullable|string',
-            'misi' => 'nullable|string',
-            'jadwal' => 'nullable|string',
+        // Only accept logo uploads from admin profile page to avoid overwriting other fields.
+        $request->validate([
             'logo' => 'nullable|image|max:2048',
         ]);
 
@@ -30,15 +26,16 @@ class ProfileController extends Controller
 
         if ($request->hasFile('logo')) {
             $path = $request->file('logo')->store('uploads','public');
-            $data['logo'] = $path;
+
+            if ($profile) {
+                $profile->update(['logo' => $path]);
+            } else {
+                Profile::create(['logo' => $path]);
+            }
+
+            return redirect()->route('admin.profile.edit')->with('status','Logo profil disimpan.');
         }
 
-        if ($profile) {
-            $profile->update($data);
-        } else {
-            Profile::create($data);
-        }
-
-        return redirect()->route('admin.profile.edit')->with('status','Profil disimpan.');
+        return redirect()->route('admin.profile.edit')->with('status','Tidak ada perubahan.');
     }
 }

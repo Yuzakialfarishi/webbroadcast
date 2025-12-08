@@ -1,84 +1,113 @@
 @extends('layouts.app')
 
-@section('styles')
+@section('title', 'Pengurus')
+
+@section('css')
 <link rel="stylesheet" href="{{ asset('css/pengurus.css') }}">
 @endsection
 
 @section('content')
-    <div class="card">
-        <h1>Struktur Organisasi</h1>
+<!-- Banner: reused site banner -->
+<div class="home-banner">
+    <img class="home-banner-img" src="/img/banner-home.svg" alt="Banner Broadcast">
+    <div class="home-banner-content">
+        <h1>Broadcast SMKN 1 Garut</h1>
+        <p>Ekstrakurikuler penyiaran, dokumentasi, dan multimedia — mengabadikan setiap momen sekolah.</p>
+        <a href="/pengurus" class="btn btn-primary">Lihat Pengurus</a>
+    </div>
+</div>
 
-        <p>Di bawah ini adalah struktur organisasi. Anda dapat menambahkan anggota dan foto melalui panel admin.</p>
+<div class="pengurus-container">
+    <h1 class="pengurus-title">STRUKTUR PENGURUS BROADCAST SMKN 1 GARUT</h1>
 
-        <style>
-            .org-grid{display:grid;grid-template-columns:1fr;gap:18px}
-            .org-top{display:flex;justify-content:center}
-            .org-top .card-person{max-width:260px;text-align:center}
-            .org-sections{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:18px;margin-top:12px}
-            .person{background:#fff;padding:8px;border-radius:8px;text-align:center}
-            .person img{width:120px;height:120px;object-fit:cover;border-radius:50%;border:4px solid #f1f1f1}
-            .person-name{font-weight:700;margin-top:8px}
-            .person-role{color:#666;font-size:13px}
-        </style>
-
-        <div class="org-grid">
-            {{-- Show Pembina centered at top if exists --}}
-            <div class="org-top">
-                @if(isset($groups['Pembina']))
-                    @foreach($groups['Pembina'] as $pembina)
-                        <div class="card-person">
-                            <div class="person">
-                                <img alt="{{ $pembina->nama }}" src="{{ $pembina->foto ? asset('storage/'.$pembina->foto) : asset('images/avatar-placeholder.png') }}">
-                                <div class="person-name">{{ $pembina->nama }}</div>
-                                <div class="person-role">{{ $pembina->jabatan }}</div>
-                            </div>
-                        </div>
-                    @endforeach
-                @endif
-            </div>
-
-            {{-- Sections grid following orderedSections - show ALL sections --}}
-            <div class="org-sections">
-                @foreach($orderedSections as $section)
-                    {{-- Skip Pembina (already shown at top) and Lainnya (show at end) --}}
-                    @if($section === 'Pembina' || $section === 'Lainnya')
-                        @continue
-                    @endif
-
-                    @php $items = $groups[$section] ?? collect(); @endphp
-                    <div>
-                        <h3 style="background:#ffd43b;padding:8px;border-radius:8px;font-size:14px">{{ $section }}</h3>
-                        <div style="margin-top:8px;display:grid;grid-template-columns:repeat(auto-fit,minmax(140px,1fr));gap:10px">
-                            @forelse($items as $p)
-                                <div class="person">
-                                    <img alt="{{ $p->nama }}" src="{{ $p->foto ? asset('storage/'.$p->foto) : asset('images/avatar-placeholder.png') }}">
-                                    <div class="person-name">{{ $p->nama }}</div>
-                                    <div class="person-role">{{ $p->jabatan }}</div>
-                                </div>
-                            @empty
-                                <p style="color:#999;font-size:13px">Belum ada anggota</p>
-                            @endforelse
-                        </div>
-                    </div>
-                @endforeach
-
-                {{-- Show Lainnya section at the end --}}
-                @php $lainnya = $groups['Lainnya'] ?? collect(); @endphp
-                <div>
-                    <h3 style="background:#ffd43b;padding:8px;border-radius:8px;font-size:14px">Lainnya</h3>
-                    <div style="margin-top:8px;display:grid;grid-template-columns:repeat(auto-fit,minmax(140px,1fr));gap:10px">
-                        @forelse($lainnya as $p)
-                            <div class="person">
-                                <img alt="{{ $p->nama }}" src="{{ $p->foto ? asset('storage/'.$p->foto) : asset('images/avatar-placeholder.png') }}">
-                                <div class="person-name">{{ $p->nama }}</div>
-                                <div class="person-role">{{ $p->jabatan }}</div>
-                            </div>
-                        @empty
-                            <p style="color:#999;font-size:13px">Belum ada anggota</p>
-                        @endforelse
-                    </div>
+    <div class="org-chart">
+        <!-- Level 1: Pembina -->
+        <div class="org-level level-1">
+            <div class="org-box pembina">
+                <div class="org-photo">
+                    <img src="/img/pembina.jpg" alt="Pembina">
                 </div>
+                <h3>Ari</h3>
+                <p>Pembina</p>
+            </div>
+        </div>
+
+        <!-- Connector Line -->
+        <div class="connector-line"></div>
+
+        <!-- Level 2: Ketua -->
+        <div class="org-level level-2">
+            <div class="org-box ketua">
+                <div class="org-photo">
+                    <img src="/img/ketua.jpg" alt="Ketua">
+                </div>
+                <h3>Nama Ketua</h3>
+                <p>Ketua</p>
+            </div>
+        </div>
+
+        <!-- Connector Line -->
+        <div class="connector-line"></div>
+
+        <!-- Level 3: Ketua Divisi -->
+        <div class="org-level level-3">
+            <div class="org-box divisi">
+                <div class="org-photo">
+                    <img src="/img/wakil-ketua.jpg" alt="Wakil Ketua">
+                </div>
+                <h3>Nama Wakil</h3>
+                <p>Wakil Ketua</p>
+            </div>
+            <div class="org-box divisi">
+                <div class="org-photo">
+                    <img src="/img/sekretaris.jpg" alt="Sekretaris">
+                </div>
+                <h3>Nama Sekretaris</h3>
+                <p>Sekretaris</p>
+            </div>
+            <div class="org-box divisi">
+                <div class="org-photo">
+                    <img src="/img/bendahara.jpg" alt="Bendahara">
+                </div>
+                <h3>Nama Bendahara</h3>
+                <p>Bendahara</p>
+            </div>
+        </div>
+
+        <!-- Connector Line -->
+        <div class="connector-line"></div>
+
+        <!-- Level 4: Anggota Inti -->
+        <div class="org-level level-4">
+            <div class="org-box anggota">
+                <div class="org-photo">
+                    <img src="/img/anggota1.jpg" alt="Anggota">
+                </div>
+                <h3>Nama Anggota 1</h3>
+                <p>Anggota Inti</p>
+            </div>
+            <div class="org-box anggota">
+                <div class="org-photo">
+                    <img src="/img/anggota2.jpg" alt="Anggota">
+                </div>
+                <h3>Nama Anggota 2</h3>
+                <p>Anggota Inti</p>
+            </div>
+            <div class="org-box anggota">
+                <div class="org-photo">
+                    <img src="/img/anggota3.jpg" alt="Anggota">
+                </div>
+                <h3>Nama Anggota 3</h3>
+                <p>Anggota Inti</p>
+            </div>
+            <div class="org-box anggota">
+                <div class="org-photo">
+                    <img src="/img/anggota4.jpg" alt="Anggota">
+                </div>
+                <h3>Nama Anggota 4</h3>
+                <p>Anggota Inti</p>
             </div>
         </div>
     </div>
+</div>
 @endsection
