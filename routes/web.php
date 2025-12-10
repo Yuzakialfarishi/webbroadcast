@@ -1,7 +1,6 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\PageController;
 use App\Http\Controllers\Auth\LoginController;
 use App\Http\Middleware\IsAdmin;
 
@@ -12,22 +11,19 @@ use App\Http\Middleware\IsAdmin;
 */
 
 // Beranda
-Route::get('/', [PageController::class, 'home'])->name('home');
+Route::get('/', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
 // Tentang
-Route::get('/tentang', [PageController::class, 'about'])->name('about');
+Route::get('/tentang', [App\Http\Controllers\AboutController::class, 'index'])->name('about');
 
-// Program atau Kegiatan (sesuaikan nama)
-Route::get('/kegiatan', [PageController::class, 'kegiatan'])->name('kegiatan');
-
-// Jadwal (jika ada)
-Route::get('/jadwal', [PageController::class, 'schedule'])->name('schedule');
+// Kegiatan
+Route::get('/kegiatan', [App\Http\Controllers\KegiatanController::class, 'index'])->name('kegiatan');
 
 // Pengurus
-Route::get('/pengurus', [PageController::class, 'team'])->name('team');
+Route::get('/pengurus', [App\Http\Controllers\PengurusController::class, 'index'])->name('team');
 
 // Kontak
-Route::get('/kontak', [PageController::class, 'contact'])->name('contact');
+Route::get('/kontak', [App\Http\Controllers\ContactController::class, 'index'])->name('contact');
 
 /*
 |--------------------------------------------------------------------------
