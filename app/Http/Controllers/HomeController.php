@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Highlight;
+use App\Models\Kegiatan;
 
 class HomeController extends Controller
 {
@@ -17,6 +18,8 @@ class HomeController extends Controller
             })
             ->values();
         
-        return view('pages.home', compact('highlights'));
+        $kegiatans = Kegiatan::orderBy('tanggal', 'desc')->get();
+        
+        return view('pages.home', compact('highlights', 'kegiatans'));
     }
 }

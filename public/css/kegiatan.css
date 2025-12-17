@@ -1,4 +1,18 @@
-/* Kegiatan Page Styles */
+/* =============================
+   KEGIATAN PAGE - FINAL CLEAN CSS
+   ============================= */
+
+:root {
+    --primary-color: #1a3d52;
+    --secondary-color: #2c5aa0;
+    --accent-color: #3b7ca5;
+    --light-bg: #f8fafb;
+    --text-dark: #555;
+    --text-light: #888;
+    --card-img-height: 180px;
+    --card-radius: 12px;
+    --slider-btn-size: 36px;
+}
 
 body {
     font-family: 'Poppins', Arial, sans-serif;
@@ -7,7 +21,9 @@ body {
     color: #222;
 }
 
-/* Home Banner (dari beranda.css) */
+/* =============================
+   BANNER
+   ============================= */
 .home-banner {
     position: relative;
     width: 100%;
@@ -26,7 +42,6 @@ body {
     height: 100%;
     object-fit: cover;
     opacity: 0.95;
-    filter: saturate(0.95) contrast(1);
 }
 
 .home-banner-content {
@@ -34,30 +49,74 @@ body {
     z-index: 2;
     text-align: center;
     color: #fff;
-    padding: 0 20px;
 }
 
 .home-banner-content h1 {
     font-size: 2.4rem;
-    margin: 0 0 8px 0;
-    text-shadow: 0 6px 18px rgba(0,0,0,0.45);
     font-weight: 700;
+    margin-bottom: 8px;
+    text-shadow: 0 6px 18px rgba(0,0,0,0.45);
 }
 
 .home-banner-content p {
     font-size: 1.05rem;
-    margin: 0;
     text-shadow: 0 4px 12px rgba(0,0,0,0.35);
 }
 
-/* Main Content */
+/* =============================
+   BUTTON
+   ============================= */
+.btn-primary,
+.detail-btn {
+    display: inline-block;
+    background: linear-gradient(135deg, var(--secondary-color), var(--accent-color));
+    color: #fff;
+    padding: 12px 28px;
+    border-radius: 8px;
+    font-weight: 600;
+    text-decoration: none;
+    border: none;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.btn-primary:hover,
+.detail-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 18px rgba(44,90,160,0.35);
+}
+
+/* =============================
+   MAIN CONTENT
+   ============================= */
 .kegiatan-main {
     max-width: 1200px;
-    margin: 0 auto;
+    margin: auto;
     padding: 60px 20px;
 }
 
-/* Kategori Section - Alternating Layout */
+.section-header {
+    text-align: center;
+    margin-bottom: 50px;
+}
+
+.section-header h2 {
+    font-size: 2.2rem;
+    font-weight: 700;
+    color: var(--primary-color);
+}
+
+.section-divider {
+    width: 60px;
+    height: 4px;
+    margin: 10px auto 0;
+    border-radius: 2px;
+    background: linear-gradient(90deg, var(--secondary-color), var(--accent-color));
+}
+
+/* =============================
+   KATEGORI SECTION
+   ============================= */
 .kategori-section {
     display: grid;
     grid-template-columns: 1fr 1fr;
@@ -67,117 +126,293 @@ body {
 }
 
 .kategori-section.reverse {
-    grid-auto-flow: dense;
+    direction: rtl;
 }
 
-.kategori-section.reverse .kategori-images {
-    grid-column: 1;
-}
-
-.kategori-section.reverse .kategori-content {
-    grid-column: 2;
+.kategori-section.reverse > * {
+    direction: ltr;
 }
 
 .kategori-content h3 {
     font-size: 1.8rem;
-    font-weight: 700;
-    color: #1a3d52;
-    margin: 0 0 20px 0;
-    line-height: 1.3;
+    color: var(--primary-color);
+    margin-bottom: 16px;
 }
 
 .kategori-content p {
-    font-size: 1rem;
-    color: #555;
+    color: var(--text-dark);
     line-height: 1.7;
-    margin: 0 0 25px 0;
-}
-
-.detail-btn {
-    display: inline-block;
-    background: linear-gradient(135deg, #2c5aa0, #3b7ca5);
-    color: white;
-    padding: 12px 28px;
-    border-radius: 8px;
-    text-decoration: none;
-    font-weight: 600;
-    font-size: 0.95rem;
-    transition: all 0.3s ease;
-    border: none;
-    cursor: pointer;
-}
-
-.detail-btn:hover {
-    transform: translateY(-2px);
-    box-shadow: 0 6px 20px rgba(44, 90, 160, 0.3);
+    margin-bottom: 20px;
 }
 
 .kategori-images {
     display: flex;
     gap: 20px;
-    align-items: center;
-    position: relative;
 }
 
 .image-card {
-    width: 250px;
+    width: 240px;
     height: 300px;
-    border-radius: 12px;
+    border-radius: var(--card-radius);
     overflow: hidden;
-    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
-    transition: all 0.3s ease;
+    box-shadow: 0 8px 25px rgba(0,0,0,0.15);
+    transition: 0.3s ease;
+}
+
+.image-card.offset {
+    margin-top: 60px;
 }
 
 .image-card img {
     width: 100%;
     height: 100%;
     object-fit: cover;
-    display: block;
 }
 
 .image-card:hover {
+    transform: translateY(-8px);
+}
+
+/* =============================
+   KEGIATAN CARDS (Grid Layout)
+   ============================= */
+.kegiatan-cards-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 30px;
+    margin-bottom: 50px;
+}
+
+.kegiatan-card {
+    background: #fff;
+    border-radius: var(--card-radius);
+    overflow: hidden;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+    transition: all 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    animation: slideUp 0.6s ease forwards;
+    opacity: 0;
+}
+
+.kegiatan-card:nth-child(1) { animation-delay: 0.1s; }
+.kegiatan-card:nth-child(2) { animation-delay: 0.2s; }
+.kegiatan-card:nth-child(3) { animation-delay: 0.3s; }
+.kegiatan-card:nth-child(4) { animation-delay: 0.4s; }
+.kegiatan-card:nth-child(5) { animation-delay: 0.5s; }
+.kegiatan-card:nth-child(6) { animation-delay: 0.6s; }
+
+@keyframes slideUp {
+    from {
+        opacity: 0;
+        transform: translateY(25px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.kegiatan-card:hover {
     transform: translateY(-10px);
-    box-shadow: 0 12px 35px rgba(0, 0, 0, 0.25);
+    box-shadow: 0 12px 35px rgba(0,0,0,0.2);
 }
 
-.image-card.offset {
-    margin-top: 80px;
-    opacity: 0.85;
+.card-image {
+    width: 100%;
+    height: 220px;
+    overflow: hidden;
+    background: #f0f0f0;
+    position: relative;
 }
 
-/* Section Header */
-.section-header {
-    margin-bottom: 40px;
-    text-align: center;
-    margin-top: 60px;
+.card-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.4s ease;
 }
 
-.section-header h2 {
-    font-size: 2rem;
+.kegiatan-card:hover .card-image img {
+    transform: scale(1.1);
+}
+
+.card-content {
+    padding: 20px;
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+}
+
+.card-badge {
+    display: inline-block;
+    background: linear-gradient(135deg, var(--secondary-color), var(--accent-color));
+    color: #fff;
+    padding: 4px 12px;
+    border-radius: 20px;
+    font-size: 0.75rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    margin-bottom: 12px;
+    width: fit-content;
+}
+
+.card-content h3 {
+    margin: 0 0 10px;
+    font-size: 1.15rem;
     font-weight: 700;
-    color: #1a3d52;
-    margin: 0 0 15px 0;
-    letter-spacing: 0.5px;
+    color: var(--primary-color);
+    line-height: 1.4;
 }
 
-.section-divider {
-    width: 60px;
-    height: 4px;
-    background: linear-gradient(90deg, #2c5aa0, #3b7ca5);
-    margin: 0 auto;
-    border-radius: 2px;
+.card-description {
+    margin: 0 0 12px;
+    font-size: 0.9rem;
+    color: var(--text-light);
+    line-height: 1.5;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
 }
 
-/* Kegiatan Terbaru Section */
-.kegiatan-terbaru-section {
-    margin-bottom: 60px;
+.card-date {
+    margin-top: auto;
+    padding-top: 12px;
+    border-top: 1px solid #f0f0f0;
+    font-size: 0.85rem;
+    color: #999;
+    font-weight: 500;
 }
 
-.kegiatan-terbaru-section:last-of-type {
-    margin-bottom: 40px;
+/* =============================
+   GALLERY GRID & CARDS
+   ============================= */
+.gallery-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)) !important;
+    gap: 25px !important;
 }
 
-/* Kegiatan Grid Layout */
+.gallery-card {
+    background: #fff;
+    border-radius: var(--card-radius);
+    overflow: hidden;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+    transition: 0.3s ease;
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+}
+
+.gallery-card:hover {
+    transform: translateY(-6px);
+    box-shadow: 0 8px 20px rgba(0,0,0,0.12);
+}
+
+/* =============================
+   KEGIATAN SLIDER
+   ============================= */
+.kegiatan-slider {
+    position: relative;
+    height: var(--card-img-height);
+    width: 100%;
+    overflow: hidden;
+    background: #f0f0f0;
+}
+
+.kegiatan-slider .slides {
+    position: relative;
+    width: 100%;
+    height: 100%;
+}
+
+.kegiatan-slider .slide {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    opacity: 0;
+    transition: opacity 0.5s ease-in-out;
+}
+
+.kegiatan-slider .slide.active {
+    opacity: 1;
+}
+
+.kegiatan-slider .slide img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+}
+
+.slider-btn {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    background: rgba(0, 0, 0, 0.5);
+    color: #fff;
+    border: none;
+    padding: 0;
+    width: var(--slider-btn-size);
+    height: var(--slider-btn-size);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    font-size: 24px;
+    border-radius: 50%;
+    transition: all 0.3s ease;
+    z-index: 10;
+}
+
+.slider-btn:hover {
+    background: rgba(0, 0, 0, 0.8);
+}
+
+.slider-btn.prev {
+    left: 8px;
+}
+
+.slider-btn.next {
+    right: 8px;
+}
+
+.kegiatan-placeholder {
+    width: 100%;
+    height: var(--card-img-height);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: #f5f5f5;
+    color: #999;
+    font-size: 0.9rem;
+}
+
+.gallery-card-body {
+    padding: 16px;
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+}
+
+.gallery-card-title {
+    font-size: 1.05rem;
+    font-weight: 600;
+    color: var(--primary-color);
+    margin: 0 0 6px 0;
+}
+
+.gallery-card-date {
+    font-size: 0.8rem;
+    color: #999;
+    margin: 0;
+}
+
+/* LEGACY KEGIATAN GRID (compatibility) */
 .kegiatan-grid {
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
@@ -185,27 +420,22 @@ body {
 }
 
 .kegiatan-card {
-    background: white;
-    border-radius: 12px;
+    background: #fff;
+    border-radius: var(--card-radius);
     overflow: hidden;
-    box-shadow: 0 2px 12px rgba(0, 0, 0, 0.08);
-    transition: all 0.3s ease;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+    transition: 0.3s ease;
     display: flex;
     flex-direction: column;
-    height: 100%;
 }
 
 .kegiatan-card:hover {
-    transform: translateY(-8px);
-    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.12);
+    transform: translateY(-6px);
 }
 
 .kegiatan-card-image {
-    position: relative;
-    width: 100%;
-    height: 180px;
+    height: var(--card-img-height);
     overflow: hidden;
-    background: #e0e0e0;
 }
 
 .kegiatan-card-image img {
@@ -215,226 +445,44 @@ body {
     transition: transform 0.3s ease;
 }
 
-.kegiatan-card:hover .kegiatan-card-image img {
+.kegiatan-card:hover img {
     transform: scale(1.08);
 }
 
-.kegiatan-card-overlay {
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    background: rgba(0, 0, 0, 0.3);
-    display: flex;
-    align-items: flex-end;
-    padding: 12px;
-    opacity: 0;
-    transition: opacity 0.3s ease;
-}
-
-.kegiatan-card:hover .kegiatan-card-overlay {
-    opacity: 1;
-}
-
-.kegiatan-badge {
-    background: linear-gradient(135deg, #2c5aa0, #3b7ca5);
-    color: white;
-    padding: 5px 12px;
-    border-radius: 20px;
-    font-size: 11px;
-    font-weight: 600;
-    text-transform: uppercase;
-    letter-spacing: 0.5px;
-    display: inline-block;
-}
-
 .kegiatan-card-content {
-    padding: 20px;
-    flex: 1;
-    display: flex;
-    flex-direction: column;
+    padding: 18px;
 }
 
 .kegiatan-card-content h3 {
     font-size: 1.1rem;
-    font-weight: 700;
-    color: #1a3d52;
-    margin: 0 0 8px 0;
-    line-height: 1.4;
+    color: var(--primary-color);
+    margin-bottom: 6px;
 }
 
 .kegiatan-date {
     font-size: 0.8rem;
     color: #999;
-    margin: 0 0 8px 0;
-    font-weight: 500;
+    margin-bottom: 8px;
 }
 
 .kegiatan-desc {
     font-size: 0.9rem;
     color: #666;
     line-height: 1.5;
-    margin: 0;
-    flex: 1;
 }
 
-/* Responsive Design */
+/* =============================
+   RESPONSIVE
+   ============================= */
 @media (max-width: 768px) {
-    .home-banner {
-        height: 250px;
-    }
-
-    .home-banner-content h1 {
-        font-size: 1.8rem;
-    }
-
-    .home-banner-content p {
-        font-size: 0.95rem;
-    }
-
-    .kegiatan-main {
-        padding: 40px 15px;
-    }
-
-    .kategori-section {
-        grid-template-columns: 1fr;
-        gap: 40px;
-        margin-bottom: 60px;
-    }
-
-    .kategori-section.reverse .kategori-images {
-        grid-column: auto;
-        order: 2;
-    }
-
-    .kategori-section.reverse .kategori-content {
-        grid-column: auto;
-        order: 1;
-    }
-
-    .kategori-images {
-        flex-wrap: wrap;
-        justify-content: center;
-    }
-
-    .image-card {
-        width: 220px;
-        height: 260px;
-    }
-
-    .image-card.offset {
-        margin-top: 0;
-        opacity: 1;
-    }
-
-    .kategori-content h3 {
-        font-size: 1.5rem;
-    }
-
-    .kategori-content p {
-        font-size: 0.95rem;
-    }
-
-    .kegiatan-grid {
-        grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
-        gap: 20px;
-    }
-
-    .kegiatan-card-image {
-        height: 150px;
-    }
-
-    .kegiatan-card-content {
-        padding: 15px;
-    }
-
-    .kegiatan-card-content h3 {
-        font-size: 1rem;
-    }
-
-    .kegiatan-desc {
-        font-size: 0.85rem;
-    }
-
-    .kegiatan-terbaru-section {
-        margin-bottom: 40px;
-    }
-
-    .section-header {
-        margin-top: 30px;
-        margin-bottom: 40px;
-    }
+    .home-banner { height: 240px; }
+    .home-banner-content h1 { font-size: 1.8rem; }
+    .kategori-section { grid-template-columns: 1fr; }
+    .kategori-images { justify-content: center; }
 }
 
 @media (max-width: 480px) {
-    .home-banner {
-        height: 200px;
-    }
-
-    .home-banner-content h1 {
-        font-size: 1.5rem;
-    }
-
-    .kegiatan-main {
-        padding: 20px 10px;
-    }
-
-    .kategori-section {
-        grid-template-columns: 1fr;
-        gap: 30px;
-        margin-bottom: 50px;
-    }
-
-    .kategori-images {
-        flex-direction: column;
-        align-items: center;
-    }
-
-    .image-card {
-        width: 100%;
-        height: 220px;
-    }
-
-    .image-card.offset {
-        margin-top: 0;
-    }
-
-    .kategori-content h3 {
-        font-size: 1.3rem;
-    }
-
-    .kategori-content p {
-        font-size: 0.9rem;
-    }
-
-    .detail-btn {
-        padding: 10px 24px;
-        font-size: 0.9rem;
-    }
-
-    .kegiatan-grid {
-        grid-template-columns: 1fr;
-        gap: 15px;
-    }
-
-    .kegiatan-card-image {
-        height: 120px;
-    }
-
-    .kegiatan-card-content {
-        padding: 12px;
-    }
-
-    .kegiatan-card-content h3 {
-        font-size: 0.95rem;
-    }
-
-    .kegiatan-date {
-        font-size: 0.75rem;
-    }
-
-    .kegiatan-desc {
-        font-size: 0.8rem;
-    }
+    .home-banner { height: 200px; }
+    .kegiatan-main { padding: 30px 12px; }
+    .kegiatan-grid { grid-template-columns: 1fr; }
 }

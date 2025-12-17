@@ -4,8 +4,8 @@
 @section('title', 'Tentang')
 
 @section('css')
-<link rel="stylesheet" href="{{ asset('css/beranda.css') }}">
-<link rel="stylesheet" href="{{ asset('css/tentang.css') }}">
+<link rel="stylesheet" href="{{ asset('css/beranda.css') }}?v={{ filemtime(public_path('css/beranda.css')) }}">
+<link rel="stylesheet" href="{{ asset('css/tentang.css') }}?v={{ filemtime(public_path('css/tentang.css')) }}">
 @endsection
 
 @section('content')
@@ -20,11 +20,9 @@
 </div>
 
 <div class="simple-hero">
-    @if(!empty($profile->logo))
-        <div class="about-hero-logo" style="margin-bottom:12px">
-            <img src="{{ asset('storage/'.$profile->logo) }}" alt="Logo" style="max-height:140px; border-radius:8px">
-        </div>
-    @endif
+    <div class="about-hero-logo" style="margin-bottom:12px">
+        <img src="{{ asset('img/' . rawurlencode('Logo BC.png')) }}" alt="Logo Broadcast" class="about-logo-img">
+    </div>
     <h1>Tentang Kami</h1>
     <p>Pelajari lebih lanjut tentang visi, misi, dan profil Broadcast SMKN 1 Garut</p>
 </div>

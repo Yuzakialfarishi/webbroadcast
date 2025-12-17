@@ -10,24 +10,6 @@
     justify-content: center;
 }
 
-/* Logo hanya di halaman tentang (.simple-hero) */
-.simple-hero::before {
-    content: '';
-    position: absolute;
-    top: 50%;
-    right: 40px;
-    transform: translateY(-50%);
-    width: 220px;
-    height: 280px;
-    background-image: url('/img/logo-broadcast.svg');
-    background-size: contain;
-    background-repeat: no-repeat;
-    background-position: center;
-    opacity: 0.08;
-    z-index: 1;
-    pointer-events: none;
-}
-
 .about-hero::before {
     content: '';
     position: absolute;
@@ -35,8 +17,12 @@
     right: 40px;
     transform: translateY(-50%);
     width: 220px;
-    height: 280px;
-    background-image: none;
+    height: 264px;
+    background-image: url('data:image/svg+xml;base64,PHN2ZyB2aWV3Qm94PSIwIDAgMjAwIDI0MCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48cGF0aCBkPSJNIDEwMCAyMCBMIDE2MCA1MCBMIDE2MCAxMTAgQyAxNjAgMTYwIDEwMCAyMjAgMTAwIDIyMCBDIDEwMCAyMjAgNDAgMTYwIDQwIDExMCBMIDQwIDUwIFoiIGZpbGw9IiNFOEU4RTgiIHN0cm9rZT0iIzFFM0E4QSIgc3Ryb2tlLXdpZHRoPSIyIi8+PHBhdGggZD0iTSAxMDAgMjAgTCA2MCA0NSBMIDYwIDExMCBDIDYwIDE0NSA4NSAyMDAgMTAwIDIxOCBMIDEwMCAyMCIgZmlsbD0iIzFFNDBBRiIgb3BhY2l0eT0iMC44Ii8+PHBhdGggZD0iTSAxMDAgMjAgTCAxNDAgNDUgTCAxNDAgMTEwIEMgMTQwIDE0NSAxMTUgMjAwIDEwMCAyMTggTCAxMDAgMjAiIGZpbGw9IiMyNTYzRUIiIG9wYWNpdHk9IjAuNiIvPjxyZWN0IHg9IjU1IiB5PSI5NSIgd2lkdGg9IjUwIiBoZWlnaHQ9IjQwIiByeD0iNCIgZmlsbD0iYmxhY2siIHN0cm9rZT0iYmxhY2siIHN0cm9rZS13aWR0aD0iMS41Ii8+PGNpcmNsZSBjeD0iODgiIGN5PSIxMjAiIHI9IjEyIiBmaWxsPSJibGFjayIgc3Ryb2tlPSJibGFjayIgc3Ryb2tlLXdpZHRoPSIxIi8+PGNpcmNsZSBjeD0iODgiIGN5PSIxMjAiIHI9IjEwIiBmaWxsPSIjMzMzIi8+PHJlY3QgeD0iNjUiIHk9IjkwIiB3aWR0aD0iOCIgaGVpZ2h0PSI4IiByeD0iMSIgZmlsbD0iYmxhY2siLz48cmVjdCB4PSIxMTAiIHk9Ijk1IiB3aWR0aD0iNiIgaGVpZ2h0PSI2IiByeD0iMSIgZmlsbD0iYmxhY2siLz48bGluZSB4MT0iNTAiIHkxPSI3NSIgeDI9IjY1IiB5Mj0iOTUiIHN0cm9rZT0iYmxhY2siIHN0cm9rZS13aWR0aD0iMyIgc3Ryb2tlLWxpbmVjYXA9InJvdW5kIi8+PGNpcmNsZSBjeD0iNDgiIGN5PSI3MyIgcj0iNiIgZmlsbD0iYmxhY2siIHN0cm9rZT0iYmxhY2siIHN0cm9rZS13aWR0aD0iMS41Ii8+PHRleHQgeD0iMTAwIiB5PSI0MCIgZm9udC1mYW1pbHk9IkFyaWFsIiBmb250LXNpemU9IjIwIiBmb250LXdlaWdodD0iYm9sZCIgdGV4dC1hbmNob3I9Im1pZGRsZSIgZmlsbD0iYmxhY2siPkJST0FEQ0FTVD88L3RleHQ+PHRleHQgeD0iMTAwIiB5PSIyMDAiIGZvbnQtZmFtaWx5PSJBcmlhbCIgZm9udC1zaXplPSIxNCIgZm9udC13ZWlnaHQ9IjYwMCIgdGV4dC1hbmNob3I9Im1pZGRsZSIgZmlsbD0iYmxhY2siPlNNS04gMSBHQVJVVDwvdGV4dD48L3N2Zz4=');
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+    opacity: 0.10;
     z-index: 1;
     pointer-events: none;
 }
@@ -55,48 +41,6 @@
     font-size: 3rem;
     font-weight: 700;
     letter-spacing: 2px;
-}
-
-/* Simple hero adjustments (used by about.blade.php) */
-.simple-hero {
-    position: relative;
-    text-align: center;
-    padding: 36px 20px;
-    background: transparent;
-}
-
-.simple-hero .about-hero-logo {
-    margin-bottom: 12px;
-}
-
-.simple-hero .about-logo-img {
-    max-height: 220px;
-    width: auto;
-    border-radius: 0;
-    display: inline-block;
-}
-
-.simple-hero .about-logo-inline svg {
-    max-height: 220px;
-    width: auto;
-    display: inline-block;
-}
-
-.simple-hero::before {
-    content: '';
-    position: absolute;
-    top: 50%;
-    right: 40px;
-    transform: translateY(-50%);
-    width: 220px;
-    height: 280px;
-    background-image: url('/img/logo-broadcast.svg');
-    background-size: contain;
-    background-repeat: no-repeat;
-    background-position: center;
-    opacity: 0.08;
-    z-index: 1;
-    pointer-events: none;
 }
 
 .about-main {
@@ -467,4 +411,3 @@
         height: 200px;
     }
 }
-

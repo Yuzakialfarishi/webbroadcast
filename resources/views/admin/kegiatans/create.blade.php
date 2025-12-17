@@ -74,14 +74,14 @@
                     <i class="fas fa-image"></i> Foto
                 </label>
                 <div style="position: relative;">
-                    <input type="file" id="foto" name="foto" accept="image/*" 
+                    <input type="file" id="foto" name="foto[]" accept="image/*" multiple 
                            style="position: absolute; opacity: 0; width: 100%; height: 100%; cursor: pointer;">
                     <label for="foto" style="display: block; padding: 40px; text-align: center; border: 2px dashed #e0e0e0; border-radius: 8px; cursor: pointer; background: #f9f9f9; transition: all 0.3s;"
                            onmouseover="this.style.borderColor='#667eea'; this.style.background='#f5f5ff';"
                            onmouseout="this.style.borderColor='#e0e0e0'; this.style.background='#f9f9f9';">
                         <i class="fas fa-cloud-upload-alt" style="font-size: 28px; color: #667eea; margin-bottom: 10px; display: block;"></i>
-                        <span style="color: #667eea; font-weight: 600;">Klik untuk upload atau drag & drop</span>
-                        <p style="color: #999; font-size: 13px; margin: 8px 0 0;">Format: JPG, PNG. Maksimal 5MB</p>
+                        <span style="color: #667eea; font-weight: 600;">Klik untuk upload (bisa banyak) atau drag & drop</span>
+                        <p style="color: #999; font-size: 13px; margin: 8px 0 0;">Format: JPG, PNG. Maksimal 5MB per file</p>
                     </label>
                 </div>
                 @error('foto')<span style="color: #f44336; font-size: 13px; margin-top: 5px; display: block;"><i class="fas fa-times-circle"></i> {{ $message }}</span>@enderror

@@ -27,6 +27,8 @@
             line-height: 1.6;
         }
 
+    @stack('scripts')
+
         /* Navbar */
         .navbar {
             background: #1e1e1e;
@@ -34,10 +36,12 @@
             display: flex;
             justify-content: space-between;
             align-items: center;
-            position: sticky;
+            position: fixed; /* fixed so it always sits above the banner */
+            left: 0;
             top: 0;
-            z-index: 40;
-            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+            width: 100%;
+            z-index: 9999;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.12);
         }
 
         .navbar .logo {
@@ -84,8 +88,26 @@
             background: linear-gradient(135deg, #5568d3 0%, #653a8a 100%);
         }
 
+        .navbar .nav-links .btn-logout {
+            background: linear-gradient(135deg, #f44336 0%, #d32f2f 100%);
+            padding: 10px 20px;
+            border-radius: 8px;
+            color: white;
+            border: none;
+            cursor: pointer;
+            font-family: 'Poppins', sans-serif;
+            font-size: 14px;
+            font-weight: 500;
+            margin: 0;
+        }
+
+        .navbar .nav-links .btn-logout:hover {
+            background: linear-gradient(135deg, #d32f2f 0%, #b71c1c 100%);
+        }
+
         .content {
             min-height: calc(100vh - 160px);
+            padding-top: 72px; /* ensure content starts below sticky navbar */
         }
 
         .container {
@@ -134,7 +156,16 @@
             <li><a href="/kegiatan">Kegiatan</a></li>
             <li><a href="/pengurus">Pengurus</a></li>
             <li><a href="/kontak">Kontak</a></li>
-            <li><a href="/login" class="btn-login">Login</a></li>
+            @auth
+                <li>
+                    <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: inline;">
+                        @csrf
+                        <button type="submit" class="btn-logout">Logout</button>
+                    </form>
+                </li>
+            @else
+                <li><a href="/login" class="btn-login">Login</a></li>
+            @endauth
         </ul>
     </nav>
 
@@ -147,6 +178,20 @@
     <footer>
         <p>&copy; 2025 Broadcast SMKN 1 Garut. All rights reserved.</p>
     </footer>
+
+    <script>
+        (function(){
+            var nav = document.querySelector('.navbar');
+            var content = document.querySelector('.content');
+            if(nav && content){
+                function syncPadding(){
+                    content.style.paddingTop = nav.offsetHeight + 'px';
+                }
+                syncPadding();
+                window.addEventListener('resize', syncPadding);
+            }
+        })();
+    </script>
 
 </body>
 </html>

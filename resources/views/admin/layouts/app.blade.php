@@ -303,6 +303,12 @@
                         <p style="font-size: 14px; color: #999;">Logged in as</p>
                         <p style="font-weight: 600;">{{ auth()->user()->name ?? 'Admin' }}</p>
                     </div>
+                    <form action="{{ route('logout') }}" method="POST" style="display: inline;">
+                        @csrf
+                        <button type="submit" class="btn btn-danger btn-small">
+                            <i class="fas fa-sign-out-alt"></i> Logout
+                        </button>
+                    </form>
                 </div>
             </div>
 

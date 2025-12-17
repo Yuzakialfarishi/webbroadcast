@@ -21,6 +21,6 @@ class KegiatanController extends Controller
         // Get all kegiatans from database
         $kegiatans = Kegiatan::orderBy('tanggal', 'desc')->get();
 
-        return view('pages.kegiatan', compact('highlights', 'kegiatans'));
+        return view('kegiatan', compact('highlights', 'kegiatans'));
     }
 }

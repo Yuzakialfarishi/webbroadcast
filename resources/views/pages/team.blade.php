@@ -27,7 +27,7 @@
                 <div class="org-photo">
                     <img src="/img/pembina.jpg" alt="Pembina">
                 </div>
-                <h3>Ari</h3>
+                <h3></h3>
                 <p>Pembina</p>
             </div>
         </div>

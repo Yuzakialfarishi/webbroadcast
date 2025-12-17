@@ -26,11 +26,16 @@ class KegiatanController extends Controller
             'deskripsi'=>'nullable|string',
             'jenis'=>'required|in:Dokumentasi Harian,Event Sekolah,Kumpulan Rutin',
             'tanggal'=>'nullable|date',
-            'foto'=>'nullable|image|max:4096',
+            'foto'=>'nullable|array',
+            'foto.*'=>'image|max:4096',
         ]);
 
         if ($request->hasFile('foto')) {
-            $data['foto'] = $request->file('foto')->store('uploads','public');
+            $paths = [];
+            foreach ($request->file('foto') as $file) {
+                $paths[] = $file->store('uploads','public');
+            }
+            $data['foto'] = json_encode($paths);
         }
 
         Kegiatan::create($data);
@@ -49,15 +54,28 @@ class KegiatanController extends Controller
             'deskripsi'=>'nullable|string',
             'jenis'=>'required|in:Dokumentasi Harian,Event Sekolah,Kumpulan Rutin',
             'tanggal'=>'nullable|date',
-            'foto'=>'nullable|image|max:4096',
+            'foto'=>'nullable|array',
+            'foto.*'=>'image|max:4096',
         ]);
 
         if ($request->hasFile('foto')) {
-            // Delete old photo if exists
+            // Delete old photos if exists (handle json array or single string)
             if ($kegiatan->foto) {
-                \Storage::disk('public')->delete($kegiatan->foto);
+                $existing = json_decode($kegiatan->foto, true);
+                if (is_array($existing)) {
+                    foreach ($existing as $p) {
+                        \Storage::disk('public')->delete($p);
+                    }
+                } else {
+                    \Storage::disk('public')->delete($kegiatan->foto);
+                }
             }
-            $data['foto'] = $request->file('foto')->store('uploads','public');
+
+            $paths = [];
+            foreach ($request->file('foto') as $file) {
+                $paths[] = $file->store('uploads','public');
+            }
+            $data['foto'] = json_encode($paths);
         }
 
         $kegiatan->update($data);
