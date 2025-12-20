@@ -34,6 +34,32 @@
     padding: 20px;
 }
 
+.position-pair {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    align-items: center;
+}
+
+.position-pair .org-box {
+    width: 180px;
+}
+
+.org-level.level-2 .position-pair {
+    flex-direction: row;
+    gap: 40px;
+}
+
+.org-level.level-3 .position-pair {
+    flex-direction: row;
+    gap: 30px;
+}
+
+.org-level.level-4 .position-pair {
+    flex-direction: row;
+    gap: 30px;
+}
+
 .org-level.level-1 {
     margin-bottom: 20px;
 }
@@ -41,6 +67,16 @@
 .org-level.level-3,
 .org-level.level-4 {
     justify-content: center;
+    width: 100%;
+    max-width: 1000px;
+    margin: 0 auto;
+    gap: 50px;
+}
+
+.org-level.level-3 {
+    justify-content: space-between;
+    padding-left: 40px;
+    padding-right: 40px;
 }
 
 .org-box {

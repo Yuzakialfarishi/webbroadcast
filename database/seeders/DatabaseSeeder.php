@@ -26,5 +26,8 @@ class DatabaseSeeder extends Seeder
 
         // ensure admin user exists with specified credentials
         $this->call(AdminUserSeeder::class);
+        
+        // seed pengurus data
+        $this->call(PengurusSeeder::class);
     }
 }

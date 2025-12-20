@@ -22,8 +22,7 @@
                     <tr>
                         <th style="width: 35%;">Nama</th>
                         <th style="width: 30%;">Jabatan</th>
-                        <th style="width: 25%;">Kontak</th>
-                        <th style="width: 10%; text-align: center;">Aksi</th>
+                        <th style="width: 35%; text-align: center;">Aksi</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -37,7 +36,6 @@
                                     {{ $p->jabatan }}
                                 </span>
                             </td>
-                            <td>{{ $p->kontak ?? '-' }}</td>
                             <td style="text-align: center;">
                                 <a href="{{ route('admin.pengurus.edit', $p->id) }}" class="btn btn-small" style="background: #2196f3; color: #fff; margin-right: 5px;">
                                     <i class="fas fa-edit"></i> Edit

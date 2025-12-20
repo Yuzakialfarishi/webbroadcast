@@ -36,7 +36,7 @@
             display: flex;
             justify-content: space-between;
             align-items: center;
-            position: fixed; /* fixed so it always sits above the banner */
+            position: fixed;
             left: 0;
             top: 0;
             width: 100%;
@@ -49,6 +49,7 @@
             font-size: 20px;
             font-weight: 700;
             margin: 0;
+            white-space: nowrap;
         }
 
         .navbar .nav-links {
@@ -105,9 +106,40 @@
             background: linear-gradient(135deg, #d32f2f 0%, #b71c1c 100%);
         }
 
+        /* Mobile Menu Toggle Button */
+        .hamburger {
+            display: none;
+            flex-direction: column;
+            gap: 5px;
+            background: none;
+            border: none;
+            cursor: pointer;
+            padding: 5px;
+        }
+
+        .hamburger span {
+            width: 25px;
+            height: 3px;
+            background: white;
+            border-radius: 2px;
+            transition: all 0.3s ease;
+        }
+
+        .hamburger.active span:nth-child(1) {
+            transform: rotate(45deg) translate(8px, 8px);
+        }
+
+        .hamburger.active span:nth-child(2) {
+            opacity: 0;
+        }
+
+        .hamburger.active span:nth-child(3) {
+            transform: rotate(-45deg) translate(7px, -7px);
+        }
+
         .content {
             min-height: calc(100vh - 160px);
-            padding-top: 72px; /* ensure content starts below sticky navbar */
+            padding-top: 72px;
         }
 
         .container {
@@ -127,20 +159,79 @@
         /* Responsive */
         @media (max-width: 768px) {
             .navbar {
-                flex-direction: column;
-                gap: 15px;
+                padding: 15px 20px;
+            }
+
+            .navbar .logo {
+                font-size: 18px;
+            }
+
+            .hamburger {
+                display: flex;
             }
 
             .navbar .nav-links {
-                flex-direction: column;
-                gap: 10px;
+                position: absolute;
+                top: 100%;
+                left: 0;
                 width: 100%;
-                text-align: center;
+                background: #1e1e1e;
+                flex-direction: column;
+                gap: 0;
+                max-height: 0;
+                overflow: hidden;
+                transition: max-height 0.3s ease;
+                padding: 0;
+                box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+            }
+
+            .navbar .nav-links.active {
+                max-height: 500px;
+                padding: 10px 0;
+            }
+
+            .navbar .nav-links li {
+                width: 100%;
             }
 
             .navbar .nav-links a {
                 display: block;
-                padding: 10px;
+                padding: 12px 20px;
+                border-radius: 0;
+            }
+
+            .navbar .nav-links a:hover {
+                background: rgba(255, 212, 59, 0.2);
+            }
+
+            .navbar .nav-links .btn-login,
+            .navbar .nav-links .btn-logout {
+                margin: 0 10px;
+                width: calc(100% - 20px);
+                text-align: center;
+            }
+
+            .content {
+                padding-top: 60px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .navbar {
+                padding: 12px 15px;
+            }
+
+            .navbar .logo {
+                font-size: 16px;
+            }
+
+            .content {
+                padding-top: 60px;
+            }
+
+            footer {
+                padding: 20px 15px;
+                font-size: 0.9rem;
             }
         }
     </style>
@@ -150,7 +241,12 @@
     {{-- NAV --}}
     <nav class="navbar">
         <h2 class="logo">Broadcast SMKN 1 Garut</h2>
-        <ul class="nav-links">
+        <button class="hamburger" id="hamburger-menu">
+            <span></span>
+            <span></span>
+            <span></span>
+        </button>
+        <ul class="nav-links" id="nav-links">
             <li><a href="/">Beranda</a></li>
             <li><a href="/tentang">Tentang</a></li>
             <li><a href="/kegiatan">Kegiatan</a></li>
@@ -180,6 +276,27 @@
     </footer>
 
     <script>
+        // Hamburger Menu Toggle
+        const hamburger = document.getElementById('hamburger-menu');
+        const navLinks = document.getElementById('nav-links');
+
+        if (hamburger) {
+            hamburger.addEventListener('click', function() {
+                hamburger.classList.toggle('active');
+                navLinks.classList.toggle('active');
+            });
+
+            // Close menu when a link is clicked
+            const navItems = navLinks.querySelectorAll('a');
+            navItems.forEach(item => {
+                item.addEventListener('click', function() {
+                    hamburger.classList.remove('active');
+                    navLinks.classList.remove('active');
+                });
+            });
+        }
+
+        // Sync navbar height with content padding
         (function(){
             var nav = document.querySelector('.navbar');
             var content = document.querySelector('.content');

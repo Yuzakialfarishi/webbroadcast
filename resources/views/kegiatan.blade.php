@@ -219,9 +219,7 @@
                     @if(!empty($item->deskripsi))
                     <p class="card-description">{{ $item->deskripsi }}</p>
                     @endif
-                    <div class="card-date">
-                        {{ optional($item->tanggal)->format('d M Y') ?? 'Tanpa tanggal' }}
-                    </div>
+                    
                 </div>
             </div>
             @endif
@@ -258,9 +256,7 @@
                     @if(!empty($item->deskripsi))
                     <p class="card-description">{{ $item->deskripsi }}</p>
                     @endif
-                    <div class="card-date">
-                        {{ optional($item->tanggal)->format('d M Y') ?? 'Tanpa tanggal' }}
-                    </div>
+                    
                 </div>
             </div>
             @endif
@@ -297,9 +293,7 @@
                     @if(!empty($item->deskripsi))
                     <p class="card-description">{{ $item->deskripsi }}</p>
                     @endif
-                    <div class="card-date">
-                        {{ optional($item->tanggal)->format('d M Y') ?? 'Tanpa tanggal' }}
-                    </div>
+                    
                 </div>
             </div>
             @endif

@@ -7,7 +7,10 @@
     <link rel="stylesheet" href="{{ asset('css/login.css') }}?v={{ filemtime(public_path('css/login.css')) }}">
     <style>
         body::before {
-            background-image: url("{{ asset('img/logo-broadcast.svg') }}?v={{ filemtime(public_path('img/logo-broadcast.svg')) }}") !important;
+            background-image: url("{{ asset('img/' . ('')) }}") !important;
+            background-size: 1600px 900px !important;
+            background-position: center top !important;
+            background-repeat: no-repeat !important;
         }
     </style>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">

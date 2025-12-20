@@ -20,16 +20,14 @@ body {
 body::before {
     content: '';
     position: fixed;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    width: 420px;
-    height: 520px;
-    background-image: url('/img/logo-broadcast.svg');
-    background-size: contain;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-size: 800px 600px;
+    background-position: center top;
     background-repeat: no-repeat;
-    background-position: center;
-    opacity: 0.18;
+    opacity: 1;
     pointer-events: none;
     z-index: 0;
 }
@@ -56,6 +54,8 @@ body::before {
     box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
     padding: 50px 40px;
     animation: slideIn 0.5s ease-out;
+    max-width: 420px;
+    margin-left: auto;
 }
 
 @keyframes slideIn {
@@ -229,20 +229,120 @@ body::before {
 }
 
 /* Responsive */
-@media (max-width: 480px) {
-    .login-card {
-        padding: 40px 24px;
-    }
-
-    .login-header h1 {
-        font-size: 2rem;
-    }
-
-    .login-header p {
-        font-size: 0.95rem;
+@media (max-width: 768px) {
+    .login-wrapper {
+        padding: 20px 15px;
     }
 
     .login-container {
         max-width: 100%;
+    }
+
+    .login-card {
+        padding: 40px 24px;
+        max-width: 100%;
+        margin: 0;
+    }
+
+    .login-header h1 {
+        font-size: 1.8rem;
+    }
+
+    .login-header p {
+        font-size: 0.9rem;
+    }
+
+    .form-group label {
+        font-size: 0.9rem;
+    }
+
+    .form-group input[type="email"],
+    .form-group input[type="password"] {
+        padding: 12px 12px;
+        font-size: 16px; /* prevents auto-zoom on iOS */
+    }
+
+    .btn-login {
+        padding: 12px 18px;
+        font-size: 0.95rem;
+    }
+
+    .error-alert {
+        font-size: 0.9rem;
+        padding: 12px 14px;
+    }
+}
+
+@media (max-width: 480px) {
+    body::before {
+        background-size: 100% auto !important;
+    }
+
+    .login-wrapper {
+        padding: 15px 10px;
+    }
+
+    .login-container {
+        width: 100%;
+    }
+
+    .login-card {
+        padding: 30px 20px;
+        border-radius: 8px;
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+    }
+
+    .login-header {
+        margin-bottom: 30px;
+    }
+
+    .login-header h1 {
+        font-size: 1.5rem;
+        margin-bottom: 6px;
+    }
+
+    .login-header p {
+        font-size: 0.85rem;
+    }
+
+    .form-group {
+        margin-bottom: 16px;
+    }
+
+    .form-group label {
+        font-size: 0.85rem;
+        gap: 6px;
+    }
+
+    .form-group input[type="email"],
+    .form-group input[type="password"] {
+        padding: 11px 10px;
+        font-size: 16px;
+        border-radius: 6px;
+    }
+
+    .form-remember {
+        gap: 6px;
+        margin-bottom: 20px;
+    }
+
+    .form-remember label {
+        font-size: 0.85rem;
+    }
+
+    .btn-login {
+        padding: 11px 16px;
+        font-size: 0.9rem;
+        gap: 8px;
+    }
+
+    .error-alert {
+        font-size: 0.85rem;
+        padding: 10px 12px;
+        margin-bottom: 20px;
+    }
+
+    .field-error {
+        font-size: 0.8rem;
     }
 }

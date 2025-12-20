@@ -17,7 +17,7 @@ return new class extends Migration
     public function down(): void
     {
         Schema::table('kegiatans', function (Blueprint $table) {
-            $table->enum('jenis', ['harian','event'])->change();
+            $table->enum('jenis', ['harian','event','rutin'])->change();
         });
     }
 };

@@ -474,15 +474,341 @@ body {
 /* =============================
    RESPONSIVE
    ============================= */
+@media (max-width: 1024px) {
+    .kegiatan-main {
+        padding: 50px 20px;
+    }
+
+    .section-header h2 {
+        font-size: 2rem;
+    }
+
+    .kategori-section {
+        gap: 30px;
+    }
+
+    .kategori-content h3 {
+        font-size: 1.6rem;
+    }
+
+    .kategori-images {
+        gap: 15px;
+    }
+
+    .image-card {
+        width: 200px;
+        height: 260px;
+    }
+
+    .kegiatan-cards-grid {
+        grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+    }
+
+    .gallery-grid {
+        grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+        gap: 20px;
+    }
+}
+
 @media (max-width: 768px) {
-    .home-banner { height: 240px; }
-    .home-banner-content h1 { font-size: 1.8rem; }
-    .kategori-section { grid-template-columns: 1fr; }
-    .kategori-images { justify-content: center; }
+    .home-banner {
+        height: 240px;
+    }
+
+    .home-banner-content h1 {
+        font-size: 1.8rem;
+    }
+
+    .home-banner-content p {
+        font-size: 0.95rem;
+    }
+
+    .kegiatan-main {
+        padding: 40px 16px;
+    }
+
+    .section-header {
+        margin-bottom: 40px;
+    }
+
+    .section-header h2 {
+        font-size: 1.6rem;
+    }
+
+    .kategori-section {
+        grid-template-columns: 1fr;
+        gap: 24px;
+        margin-bottom: 60px;
+    }
+
+    .kategori-section.reverse {
+        direction: ltr;
+    }
+
+    .kategori-content h3 {
+        font-size: 1.4rem;
+        margin-bottom: 12px;
+    }
+
+    .kategori-content p {
+        font-size: 0.95rem;
+        margin-bottom: 16px;
+    }
+
+    .kategori-images {
+        justify-content: center;
+        flex-wrap: wrap;
+        gap: 12px;
+    }
+
+    .image-card {
+        width: 160px;
+        height: 210px;
+    }
+
+    .image-card.offset {
+        margin-top: 0;
+    }
+
+    .kegiatan-cards-grid {
+        grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+        gap: 20px;
+        margin-bottom: 40px;
+    }
+
+    .kegiatan-card {
+        border-radius: 10px;
+    }
+
+    .card-image {
+        height: 180px;
+    }
+
+    .card-content {
+        padding: 16px;
+    }
+
+    .card-content h3 {
+        font-size: 1.05rem;
+        margin-bottom: 8px;
+    }
+
+    .card-description {
+        font-size: 0.85rem;
+        margin-bottom: 10px;
+    }
+
+    .card-date {
+        font-size: 0.8rem;
+        padding-top: 10px;
+    }
+
+    .gallery-grid {
+        grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+        gap: 16px;
+    }
+
+    .gallery-card-body {
+        padding: 12px;
+    }
+
+    .gallery-card-title {
+        font-size: 0.95rem;
+    }
+
+    .kegiatan-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 16px;
+    }
+
+    .btn-primary,
+    .detail-btn {
+        padding: 10px 24px;
+        font-size: 0.9rem;
+    }
 }
 
 @media (max-width: 480px) {
-    .home-banner { height: 200px; }
-    .kegiatan-main { padding: 30px 12px; }
-    .kegiatan-grid { grid-template-columns: 1fr; }
+    .home-banner {
+        height: 180px;
+        margin-bottom: 20px;
+    }
+
+    .home-banner-img {
+        background-size: cover;
+        background-position: center;
+    }
+
+    .home-banner-content h1 {
+        font-size: 1.4rem;
+        margin-bottom: 4px;
+        text-shadow: 0 3px 10px rgba(0,0,0,0.4);
+    }
+
+    .home-banner-content p {
+        font-size: 0.8rem;
+        margin-bottom: 8px;
+    }
+
+    .home-banner .btn {
+        padding: 8px 14px;
+        font-size: 0.75rem;
+    }
+
+    .kegiatan-main {
+        padding: 30px 12px;
+    }
+
+    .section-header {
+        margin-bottom: 30px;
+    }
+
+    .section-header h2 {
+        font-size: 1.4rem;
+        margin-bottom: 12px;
+    }
+
+    .section-divider {
+        width: 50px;
+    }
+
+    .kategori-section {
+        grid-template-columns: 1fr;
+        gap: 16px;
+        margin-bottom: 40px;
+    }
+
+    .kategori-content h3 {
+        font-size: 1.2rem;
+        margin-bottom: 10px;
+    }
+
+    .kategori-content p {
+        font-size: 0.9rem;
+        line-height: 1.5;
+        margin-bottom: 12px;
+    }
+
+    .kategori-images {
+        justify-content: center;
+        gap: 8px;
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .image-card {
+        width: 100%;
+        max-width: 140px;
+        height: 180px;
+    }
+
+    .image-card.offset {
+        margin-top: 0;
+    }
+
+    .kegiatan-cards-grid {
+        grid-template-columns: 1fr;
+        gap: 16px;
+        margin-bottom: 30px;
+    }
+
+    .kegiatan-card {
+        border-radius: 8px;
+    }
+
+    .kegiatan-card:nth-child(1),
+    .kegiatan-card:nth-child(2),
+    .kegiatan-card:nth-child(3),
+    .kegiatan-card:nth-child(4),
+    .kegiatan-card:nth-child(5),
+    .kegiatan-card:nth-child(6) {
+        animation-delay: 0 !important;
+    }
+
+    .card-image {
+        height: 140px;
+    }
+
+    .card-content {
+        padding: 12px;
+    }
+
+    .card-badge {
+        font-size: 0.7rem;
+        padding: 3px 10px;
+        margin-bottom: 8px;
+    }
+
+    .card-content h3 {
+        font-size: 0.95rem;
+        margin-bottom: 6px;
+    }
+
+    .card-description {
+        font-size: 0.8rem;
+        margin-bottom: 8px;
+        -webkit-line-clamp: 2;
+    }
+
+    .card-date {
+        font-size: 0.75rem;
+        padding-top: 8px;
+    }
+
+    .gallery-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 12px;
+    }
+
+    .gallery-card-body {
+        padding: 10px;
+    }
+
+    .gallery-card-title {
+        font-size: 0.9rem;
+        margin-bottom: 4px;
+    }
+
+    .gallery-card-date {
+        font-size: 0.75rem;
+    }
+
+    .kegiatan-grid {
+        grid-template-columns: 1fr;
+        gap: 12px;
+    }
+
+    .kegiatan-card-image {
+        height: 140px;
+    }
+
+    .kegiatan-card-content {
+        padding: 12px;
+    }
+
+    .kegiatan-card-content h3 {
+        font-size: 0.95rem;
+        margin-bottom: 4px;
+    }
+
+    .kegiatan-date {
+        font-size: 0.75rem;
+        margin-bottom: 6px;
+    }
+
+    .kegiatan-desc {
+        font-size: 0.85rem;
+    }
+
+    .btn-primary,
+    .detail-btn {
+        padding: 8px 16px;
+        font-size: 0.8rem;
+    }
+
+    .slider-btn {
+        width: 32px;
+        height: 32px;
+        font-size: 18px;
+    }
 }
